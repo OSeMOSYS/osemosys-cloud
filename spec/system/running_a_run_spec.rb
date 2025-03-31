@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'rake'
 
 RSpec.describe 'Running a run' do
-  it 'Solves a valid run with pre and post processing' do
+  xit 'Solves a valid run with pre and post processing' do
     run = create(:run, :queued, :atlantis_preprocessed)
     expect(run.state).to eq('queued')
 

@@ -20,6 +20,6 @@
     "node": "22.x"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config ./config/webpack/webpack.config.js"
   }
 }
