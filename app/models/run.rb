@@ -22,6 +22,8 @@ class Run < ApplicationRecord
   validates :model_file, attached: true
   validates :data_file, attached: true
 
+  validate :only_postprocess_preprocessed_runs
+
   enum server_type: ServerType.to_enum_definition
   enum language: Language.to_enum_definition
 
@@ -128,6 +130,12 @@ class Run < ApplicationRecord
   end
 
   private
+
+  def only_postprocess_preprocessed_runs
+    if post_process.present? && pre_process.blank?
+      errors.add(:post_process, 'can only be enabled if pre-processing is enabled')
+    end
+  end
 
   def generate_res_file
     GenerateResJob.perform_later(id)

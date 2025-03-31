@@ -32,10 +32,12 @@ class SolveRun
       io: File.open(@solved_files.solved_file_path),
       filename: File.basename(@solved_files.solved_file_path),
     )
-    run_result.csv_results.attach(
-      io: File.open(@solved_files.csv_file_path),
-      filename: File.basename(@solved_files.csv_file_path),
-    )
+    if run.post_process?
+      run_result.csv_results.attach(
+        io: File.open(@solved_files.csv_file_path),
+        filename: File.basename(@solved_files.csv_file_path),
+      )
+    end
     run_result.update!(feasible: @solved_files.feasible)
   end
 

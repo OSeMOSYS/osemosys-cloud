@@ -9,13 +9,15 @@ module Osemosys
       end
 
       def call
-        preprocess_data_file
+        preprocess_data_file if pre_process?
         generate_input_file
         find_solution
         prepare_results
-        postprocess_results
-        generate_figures
-        zip_csv_folder
+        if postprocess_results?
+          postprocess_results
+          generate_figures
+          zip_csv_folder
+        end
         print_summary
 
         SolvedFiles.new(
@@ -29,6 +31,14 @@ module Osemosys
 
       attr_reader :local_data_path, :local_model_path, :run, :logger
 
+      def pre_process?
+        run.pre_process?
+      end
+
+      def postprocess_results?
+        run.post_process?
+      end
+
       def preprocess_data_file
         run.transition_to!(:preprocessing_data)
         Commands::PreprocessDataFile.new(
@@ -41,10 +51,12 @@ module Osemosys
       end
 
       def generate_input_file
+        data_path = pre_process? ? preprocessed_data_path : local_data_path
+        model_path = pre_process? ? preprocessed_model_file_path : local_model_path
         run.transition_to!(:generating_matrix)
         Commands::GenerateInputFile.new(
-          local_model_path: preprocessed_model_file_path,
-          local_data_path: preprocessed_data_path,
+          local_model_path: model_path,
+          local_data_path: data_path,
           lp_path: lp_path,
           logger: logger,
           timeout: run.timeout.to_i,

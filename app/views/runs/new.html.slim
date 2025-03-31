@@ -24,6 +24,8 @@ h1 = t('helpers.submit.run.new')
     br
     = f.input :server_type, collection: ServerType.all, include_blank: false,
         label_method: :name, value_method: :slug, default: 'sidekiq'
+    = f.input :pre_process
+    = f.input :post_process
     = f.input :notify_when_finished
     = f.hidden_field :version_id
     br
