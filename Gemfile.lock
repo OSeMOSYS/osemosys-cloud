@@ -230,6 +230,14 @@ GEM
     msgpack (1.5.1)
     multi_json (1.15.0)
     nenv (0.3.0)
+    net-imap (0.2.4)
+      digest
+      net-protocol
+      strscan
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.1.2)
       io-wait
       timeout
@@ -402,6 +410,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     statesman (9.0.1)
+    strscan (3.0.1)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
@@ -462,6 +471,8 @@ DEPENDENCIES
   localedata
   lograge
   mini_magick
+  net-imap
+  net-pop
   net-smtp
   pg
   pry-rails
