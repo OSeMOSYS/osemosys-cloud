@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.1.7'
 
 gem 'active_storage_validations'
 gem 'acts-as-taggable-on'
@@ -17,10 +17,12 @@ gem 'discard'
 gem 'dry-configurable'
 gem 'font_awesome5_rails'
 gem 'image_processing'
+gem 'jsbundling-rails'
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'lograge'
 gem 'mini_magick'
+gem 'net-smtp'
 gem 'pg'
 gem 'puma'
 gem 'rack', '2.2.2' # https://github.com/heartcombo/devise/issues/5273
@@ -37,7 +39,6 @@ gem 'statesman'
 gem 'tty-command'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'webpacker'
 
 group :development do
   gem 'better_errors'

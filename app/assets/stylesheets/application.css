@@ -10,9 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require bootstrap/dist/css/bootstrap.min.css
- *= require select2/dist/css/select2.min.css
- *= require select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css
+ *= require vendor/bootstrap.min.css
+ *= require vendor/select2.min.css
+ *= require vendor/select2-bootstrap-5-theme.min.css
  *= require font_awesome5_webfont
  *= require_tree .
  *= require_self
