@@ -324,7 +324,8 @@ def main(data_infile, data_outfile, model_file, model_processed):
                     'TIMESLICEofDAYTYPE',
                     'TIMESLICEofDAILYTIMEBRACKET',
                     'TIMESLICEofSDB',
-                    'MODExTECHNOLOGYperEMISSION']
+                    'MODExTECHNOLOGYperEMISSION',
+                    'MODExTECHNOLOGYperEMISSIONChange']
 
         sets_of_sets = False
         var_count = 0
@@ -385,6 +386,8 @@ def main(data_infile, data_outfile, model_file, model_processed):
                             model_lines.append('set TIMESLICEofSDB{ls in SEASON, ld in DAYTYPE, lh in DAILYTIMEBRACKET} within TIMESLICE := TIMESLICEofSEASON[ls] inter TIMESLICEofDAYTYPE[ld] inter TIMESLICEofDAILYTIMEBRACKET[lh];\n')
                         model_lines.append('set MODExTECHNOLOGYperEMISSION{e in EMISSION} within MODE_OF_OPERATION cross TECHNOLOGY\n')
                         model_lines.append('    := {m in MODE_OF_OPERATION, t in TECHNOLOGY : exists{r in REGION, y in YEAR} EmissionActivityRatio[r,t,e,m,y] <> 0};\n')
+                        model_lines.append('set MODExTECHNOLOGYperEMISSIONChange{e in EMISSION} within MODE_OF_OPERATION cross TECHNOLOGY\n')
+                        model_lines.append('    := {m in MODE_OF_OPERATION, t in TECHNOLOGY : exists{r in REGION, y in YEAR} (EmissionToActivityChangeRatio[r,t,e,m,y] <> 0 or EmissionActivityRatio[r,t,e,m,y] <> 0)};\n')
                     parsing_params = 2
                     parsing_all = 1
 
