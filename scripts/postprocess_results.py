@@ -227,7 +227,7 @@ def generate_csv_files(data_file, results_file, base_folder=os.getcwd()):
     df['temp'] = df['temp'].str.lstrip(' *\n\t')
     df[['temp','value']] = df['temp'].str.split(')', expand=True)
     df = df.applymap(lambda x: x.strip() if isinstance(x,str) else x)
-    df['value'] = df['value'].str.split(' ', expand=True)
+    df['value'] = df['value'].str.split(' ', expand=True)[0]
     df[['parameter','id']] = df['temp'].str.split('(', expand=True)
     df['parameter'] = df['parameter'].str.split(' ', expand=True)[1]
     df = df.drop('temp', axis=1)
