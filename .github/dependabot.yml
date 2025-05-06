@@ -1,0 +1,72 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 10
+  versioning-strategy: lockfile-only
+  ignore:
+  - dependency-name: aws-sdk-ec2
+    versions:
+    - 1.224.0
+    - 1.226.0
+    - 1.227.0
+    - 1.228.0
+    - 1.232.0
+  - dependency-name: statesman
+    versions:
+    - 8.0.2
+  - dependency-name: listen
+    versions:
+    - 3.5.1
+  - dependency-name: bugsnag
+    versions:
+    - 6.20.0
+  - dependency-name: sidekiq
+    versions:
+    - 6.2.0
+  - dependency-name: rspec-rails
+    versions:
+    - 4.1.0
+    - 5.0.0
+    - 5.0.1
+  - dependency-name: aws-sdk-s3
+    versions:
+    - 1.88.0
+    - 1.88.1
+    - 1.89.0
+    - 1.91.0
+    - 1.92.0
+  - dependency-name: devise-i18n
+    versions:
+    - 1.9.3
+  - dependency-name: country_select
+    versions:
+    - 5.0.0
+    - 5.0.1
+  - dependency-name: puma
+    versions:
+    - 5.2.0
+    - 5.2.1
+    - 5.2.2
+  - dependency-name: webdrivers
+    versions:
+    - 4.6.0
+  - dependency-name: tty-command
+    versions:
+    - 0.10.1
+  - dependency-name: rails
+    versions:
+    - 6.0.3.5
+  - dependency-name: bootsnap
+    versions:
+    - 1.6.0
+    - 1.7.1
+    - 1.7.2
+  - dependency-name: simple_form
+    versions:
+    - 5.1.0
+  - dependency-name: capybara
+    versions:
+    - 3.35.3
