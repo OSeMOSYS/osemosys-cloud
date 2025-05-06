@@ -1,0 +1,40 @@
+name: Test
+on: [push]
+
+jobs:
+  rspec:
+    name: Run RSpec tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_USER: osemosys_cloud
+          POSTGRES_DB: osemosys_cloud
+          POSTGRES_PASSWORD: ""
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      # - name: Install osemosys dependencies
+      #   run: |
+      #     sudo apt-get update && sudo apt-get install glpk-utils coinor-cbc python3-pandas
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: osemosys_cloud
+          POSTGRES_PASSWORD: ""
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+          bin/rspec --format progress

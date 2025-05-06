@@ -13,7 +13,9 @@ development:
 
 test:
   <<: *default
-  url: postgres://localhost
+  host: localhost
+  username: <%= ENV.fetch('POSTGRES_USER', '') %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD', '') %>
 
 production:
   <<: *default
